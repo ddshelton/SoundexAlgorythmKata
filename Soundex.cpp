@@ -21,7 +21,8 @@ string Soundex::zeroPad(const string& word)const
  */
 string Soundex::encode(const string& word) const
 {
-    return zeroPad(head(word) + encodeDigits(word));
+   // return zeroPad(head(word) + encodeDigits(word));
+    return zeroPad(head(word) + encodeDigits(tail(word)));
 }
 
 /**
@@ -35,16 +36,18 @@ string Soundex::head(const string &word) const {
     // return std::string();
 }
 
-string Soundex::encodeDigits(const string &word) const {
-    if(word.length() > 1)
-    {
-        return encodeDigit(word[1]);
-    }
-    else
+string Soundex::encodeDigits(const string &word) const
+{
+    if(word.empty())
     {
         return "";
     }
-    //return std::string();
+    string encoding;
+    for(auto letter: word)
+    {
+        encoding += encodeDigit(letter);
+    }
+    return encoding;
 }
 
 string Soundex::encodeDigit(char letter) const
@@ -65,4 +68,12 @@ string Soundex::encodeDigit(char letter) const
     // In this case, return an empty string
     return it == encoding.end() ? "" : it -> second;
 
+}
+/**
+ * @brief return all but the first character
+ * @param word  - input string
+ * @return  - string from 1:end
+ */
+string Soundex::tail(const string &word) const {
+    return word.substr(1);
 }
