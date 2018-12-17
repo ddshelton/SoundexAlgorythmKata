@@ -59,5 +59,10 @@ string Soundex::encodeDigit(char letter) const
                     {'m', "5"}, {'n', "5"},
                     {'r', "6"}
             };
-    return encoding.find(letter) -> second;
+    auto it = encoding.find(letter);
+
+    //if you reach the end of the map there is no match
+    // In this case, return an empty string
+    return it == encoding.end() ? "" : it -> second;
+
 }

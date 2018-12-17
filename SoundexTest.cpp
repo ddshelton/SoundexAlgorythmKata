@@ -39,8 +39,19 @@ TEST_F(SoundexEncoding, ReplaceConsonantsWithAppropriateDigits)
     ASSERT_THAT (soundex.encode("Ad"), Eq("A300"));
     ASSERT_THAT (soundex.encode("Al"), Eq("A400"));
     ASSERT_THAT (soundex.encode("Am"), Eq("A500"));
+    ASSERT_THAT (soundex.encode("Ar"), Eq("A600"));
     ASSERT_THAT (soundex.encode("Ap"), Eq("A100"));
     ASSERT_THAT (soundex.encode("Ar"), Eq("A600"));
+}
+
+TEST_F(SoundexEncoding, IgnoreNonAlphabetics)
+{
+    //Arrange
+
+    //Act
+
+    //Assert
+    ASSERT_THAT (soundex.encode("A#"), Eq("A000"));
 }
 
 
