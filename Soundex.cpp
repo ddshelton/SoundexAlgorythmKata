@@ -38,13 +38,13 @@ string Soundex::head(const string &word) const {
 
 string Soundex::encodeDigits(const string &word) const
 {
-    if(word.empty())
-    {
-        return "";
-    }
     string encoding;
     for(auto letter: word)
     {
+       if(isComplete(encoding))
+       {
+           break;
+       }
         encoding += encodeDigit(letter);
     }
     return encoding;
@@ -76,4 +76,8 @@ string Soundex::encodeDigit(char letter) const
  */
 string Soundex::tail(const string &word) const {
     return word.substr(1);
+}
+
+bool Soundex::isComplete(const string &encoding) const {
+    return encoding.length() == MaxCodeLength -1;
 }
