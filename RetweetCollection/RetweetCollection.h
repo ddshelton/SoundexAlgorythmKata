@@ -6,11 +6,13 @@
 #define FIRSTEXAMPLE_RETWEETCOLLECTION_H
 
 #include "Tweet.h"
+#include <set>
 
 class RetweetCollection
 {
 private:
     unsigned int size_;
+    set<Tweet> tweets; //container that stores unique elements following a specific order
 public:
     RetweetCollection();
 
